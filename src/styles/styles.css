@@ -1,0 +1,9 @@
+.contentLayout {
+	padding: 0 24px;
+	overflow: initial;
+	display: flex;
+}
+
+.noContent {
+	padding: 0 40%;
+}
