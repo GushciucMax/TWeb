@@ -2,22 +2,29 @@ import React from 'react'
 import { Layout } from 'antd';
 import { } from '../../styles/styles.css'
 
-import { contentMock } from '../../Mock/content';
 import { ContentCard } from '../../Components/ContentCard/ContentCard';
-
 
 const { Content } = Layout
 
-export const ContentLayout = () => {
+export const ContentLayout = ({ initialState, setInitialState }) => {
+
+	// const [content, setContent] = useState([])
+	//
+	// useEffect(() => {
+	// 	setContent(getStateByKey('initialState'))
+	// })
+
     return (
 		<Content className="contentLayout">
-			{
-				contentMock.map(({img, title, description}) => {
+			{	!initialState.length ? (
+				<div>No content</div>
+			) : (
+				initialState.map(({img, title, description}, index) => {
 					return(
-						<ContentCard title={title} description={description} img={img} />
+						<ContentCard initialState={ initialState } setInitialState={setInitialState} key={index} title={title} description={description} img={img} index={index} />
 					)
 				})
-			}
+			)}
 		</Content>
 	)
 }

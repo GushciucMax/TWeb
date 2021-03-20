@@ -1,7 +1,7 @@
 .contentLayout {
 	padding: 0 24px;
-	overflow: initial;
-	display: flex;
+	display:inline-flex;
+	overflow-x: inherit;
 }
 
 .noContent {
