@@ -10,7 +10,7 @@ export const ContentCard = ({ img, title, description, index, initialState, setI
 
 	useEffect(() => {
 		if(removeElement.length) {
-			message.success(removeElement.title);
+			message.success("Component was deleted");
 		}
 	})
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Layout } from 'antd';
 import { } from '../../styles/styles.css'
+import { NoContent } from '../../Components/NoContent/NoContent'
 
 import { ContentCard } from '../../Components/ContentCard/ContentCard';
 
@@ -8,16 +9,10 @@ const { Content } = Layout
 
 export const ContentLayout = ({ initialState, setInitialState }) => {
 
-	// const [content, setContent] = useState([])
-	//
-	// useEffect(() => {
-	// 	setContent(getStateByKey('initialState'))
-	// })
-
-    return (
+	return (
 		<Content className="contentLayout">
 			{	!initialState.length ? (
-				<div>No content</div>
+				<NoContent />
 			) : (
 				initialState.map(({img, title, description}, index) => {
 					return(
