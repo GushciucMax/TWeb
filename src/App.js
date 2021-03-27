@@ -6,9 +6,10 @@ import { HeaderLayout } from './Layouts/HeaderLayout/HeaderLayout';
 import { MenuLayout } from './Layouts/MenuLayout/MenuLayout';
 import { ContentLayout } from './Layouts/ContentLayout/ContentLayout';
 import { FooterLayout } from './Layouts/FooterLayout/FooterLayout';
-import { MAIN_PATH, CALENDAR_PATH, DOCS_PATH } from './helpers/constants';
+import { MAIN_PATH, CALENDAR_PATH, DOCS_PATH, HOME_PATH, SHOP_PATH, ABOUT_PATH } from './helpers/constants';
 import { Calendard } from './Components/Calendar/Calendar';
 import { contentMock } from './Mock/content';
+import { NoContent } from './Components/NoContent/NoContent'
 
 import FormDocs from './Components/FormDocs/FormDocs'
 
@@ -43,6 +44,15 @@ function App() {
 			          </Route>
 			          <Route exact path={DOCS_PATH}>
 			             <FormDocs />
+			          </Route>
+					  <Route exact path={HOME_PATH}>
+					  	 <NoContent />
+			          </Route>
+			          <Route exact path={SHOP_PATH}>
+			             <NoContent />
+			          </Route>
+			          <Route exact path={ABOUT_PATH}>
+			             <NoContent />
 			          </Route>
 			        </Switch>
 
