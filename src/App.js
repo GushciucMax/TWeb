@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import 'antd/dist/antd.css';
 import './App.css';
 import { Layout } from 'antd';
@@ -8,10 +8,14 @@ import { ContentLayout } from './Layouts/ContentLayout/ContentLayout';
 import { FooterLayout } from './Layouts/FooterLayout/FooterLayout';
 import { MAIN_PATH, CALENDAR_PATH, DOCS_PATH, HOME_PATH, SHOP_PATH, ABOUT_PATH } from './helpers/constants';
 import { Calendard } from './Components/Calendar/Calendar';
-import { contentMock } from './Mock/content';
-import { NoContent } from './Components/NoContent/NoContent'
+import { NoContent } from './Components/NoContent/NoContent';
+
+import { HomePage } from './NavBar/HomePage'
+import { ShopPage } from './NavBar/ShopPage'
+import { AboutPage } from './NavBar/AboutPage'
 
 import FormDocs from './Components/FormDocs/FormDocs'
+import { useRootStore } from './mobx/ProviderRootStore/ProviderRootStore'
 
 import {
   BrowserRouter as Router,
@@ -23,46 +27,52 @@ const { Content } = Layout
 
 function App() {
 
-	const [initialState, setInitialState] = useState(contentMock)
+	const { setInitialState } = useRootStore()
+
+    useEffect(() => {
+        setInitialState()
+    }, [])
 
   return (
-	  <Router>
+		  <Router>
 
-        <Layout>
-			<HeaderLayout />
+	        <Layout>
+				<HeaderLayout />
 
-			<Content style={{ padding: '0 50px', margin: '30px 0'}}>
-		        <Layout className="site-layout-background" style={{ padding: '24px 0'}}>
-		        	<MenuLayout />
+				<Content style={{ padding: '0 50px', margin: '30px 0'}}>
+				<Switch>
+				<Route exact path={HOME_PATH}>
+				   <HomePage />
+				</Route>
+				<Route exact path={SHOP_PATH}>
+				   <ShopPage />
+				</Route>
+				<Route exact path={ABOUT_PATH}>
+				   <AboutPage />
+				</Route>
+				</Switch>
 
-					<Switch>
-			          <Route exact path={MAIN_PATH}>
-					  	 <ContentLayout initialState={initialState} setInitialState={ setInitialState}/>
-			          </Route>
-			          <Route exact path={CALENDAR_PATH}>
-			             <Calendard />
-			          </Route>
-			          <Route exact path={DOCS_PATH}>
-			             <FormDocs />
-			          </Route>
-					  <Route exact path={HOME_PATH}>
-					  	 <NoContent />
-			          </Route>
-			          <Route exact path={SHOP_PATH}>
-			             <NoContent />
-			          </Route>
-			          <Route exact path={ABOUT_PATH}>
-			             <NoContent />
-			          </Route>
-			        </Switch>
+					<Layout className="site-layout-background" style={{ padding: '24px 0'}}>
+			        	<MenuLayout />
+						<Switch>
+				          <Route exact path={MAIN_PATH}>
+						  	 <ContentLayout />
+				          </Route>
+				          <Route exact path={CALENDAR_PATH}>
+				             <Calendard />
+				          </Route>
+				          <Route exact path={DOCS_PATH}>
+				             <FormDocs />
+				          </Route>
+						 </Switch>
 
-				</Layout>
-		    </Content>
+					</Layout>
+			    </Content>
 
-			<FooterLayout />
-        </Layout>
+				<FooterLayout />
+	        </Layout>
 
-		</Router>
+			</Router>
   )
 }
 
