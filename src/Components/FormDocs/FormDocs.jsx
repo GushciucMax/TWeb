@@ -29,8 +29,9 @@ const FormDocs = () => {
 
   return (
 	  <div style ={{
-		  minWidth:' 600px',
-		  padding:' 0 20px'
+		  minWidth:' 500px',
+		  padding:' 0 50px',
+		  margin:'left'
 	}}>
     <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
       <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true }]}>
@@ -39,7 +40,7 @@ const FormDocs = () => {
       <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email' }]}>
         <Input value={ email } placeholder='Email' onChange= {(e) => setEmail(e.target.value)}/>
       </Form.Item>
-      <Form.Item name={['user', 'introduction']} label="Introduction">
+      <Form.Item name={['user', 'introduction']} label="Description">
         <Input.TextArea value={ desc } placeholder='Description' onChange= {(e) => setDesc(e.target.value)}/>
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

@@ -8,7 +8,6 @@ export const HOME_PATH = '/'
 export const SHOP_PATH = '/shop'
 export const ABOUT_PATH = '/about'
 
-
 export const MenuRoot = [
 	{
 		id: 0,

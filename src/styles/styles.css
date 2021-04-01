@@ -5,5 +5,9 @@
 }
 
 .noContent {
-	padding: 0 40%;
+	margin: auto;
+}
+
+.navbar {
+	margin:auto;
 }
