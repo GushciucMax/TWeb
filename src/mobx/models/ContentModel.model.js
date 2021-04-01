@@ -13,6 +13,5 @@ export const ContentModel = types.model('ContentModel', {
             const { content$, setUpdateContent } = getParentOfType(self, RootStore$)
             const newContent = content$.filter((item) => item.id !== id)
             setUpdateContent(newContent)
-            console.log('>>content$', content$)
         }
     }))

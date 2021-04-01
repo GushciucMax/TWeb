@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Layout } from 'antd';
 import { } from '../../styles/styles.css'
 import { observer } from "mobx-react-lite"
@@ -11,15 +11,10 @@ const { Content } = Layout
 
 export const ContentLayout = observer(() => {
 
-	const { setInitialState, content$, contentSum } = useRootStore()
-
-	useEffect(() => {
-		setInitialState()
-	}, [])
+	const { content$ } = useRootStore()
 
 	return (
 		<Content className="contentLayout">
-			{contentSum}
 
 			{	!content$.length ? (
 				<NoContent />

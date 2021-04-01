@@ -6,7 +6,5 @@ export const HomePage = () => {
 		<div className = "navbar">
 			<h1> Welcome Home </h1>
 		</div>
-
-		
 	)
 }
