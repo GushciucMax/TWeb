@@ -1,56 +1,33 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { observer } from 'mobx-react-lite'
 
-import { Form, Input, Button } from 'antd';
+import { Input, Button, Space, Form } from 'antd';
+import { useRootStore } from '../../mobx/ProviderRootStore/ProviderRootStore';
 
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
+export const FormDocs = observer(() => {
 
-const validateMessages = {
-  required: '${label} is required!',
-  types: {
-    email: '${label} is not a valid email!',
-    number: '${label} is not a valid number!',
-  }
-};
+    const { addContent, updateField, addContent$ } = useRootStore()
 
-const FormDocs = () => {
+    const { title, description, img } = addContent$
 
-	const [name, setName ] = useState('')
-	const [email, setEmail ] = useState('')
-	const [desc, setDesc ] = useState('')
+    return (
+        <div style ={{
+            width: '80%',
+            margin: 'auto',
+            padding: '0 20%',
+        }}>
+            
+                <Form name='form'>
+                <Space direction="vertical" style = {{display:'revert'}}>
+                <Input placeholder='Title' value = { title } onChange = {(e) => updateField('title', e.target.value)} />
+                <Input.TextArea placeholder='Description' value = { description } onChange = {(e) => updateField('description', e.target.value)}/>
+                <Input placeholder='Image' value = { img } onChange = {(e) => updateField('img', e.target.value)}/>
+                <Button onClick = {() => addContent( addContent$ ) } type="primary" htmlType="submit">
+                    Add
+                </Button>
+            </Space>
+            </Form>
 
-  	const onFinish = (values) => {
-	    console.log(name)
-		console.log(email)
-		console.log(desc)
-  	};
-
-  return (
-	  <div style ={{
-		  minWidth:' 500px',
-		  padding:' 0 50px',
-		  margin:'left'
-	}}>
-    <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-      <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true }]}>
-	  <Input value={ name } placeholder='Name' onChange= {(e) => setName(e.target.value)} />
-      </Form.Item>
-      <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email' }]}>
-        <Input value={ email } placeholder='Email' onChange= {(e) => setEmail(e.target.value)}/>
-      </Form.Item>
-      <Form.Item name={['user', 'introduction']} label="Description">
-        <Input.TextArea value={ desc } placeholder='Description' onChange= {(e) => setDesc(e.target.value)}/>
-      </Form.Item>
-      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
-	</div>
-  );
-};
-
-export default FormDocs;
+        </div>
+    )
+})
