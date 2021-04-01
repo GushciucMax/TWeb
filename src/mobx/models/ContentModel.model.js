@@ -1,6 +1,6 @@
 import { types, getParentOfType } from 'mobx-state-tree'
 
-import { RootStore$ } from '../stores/RootStore'
+import { RootStore$ } from '../stores/RootStore$'
 
 export const ContentModel = types.model('ContentModel', {
     id: types.identifier,
@@ -13,5 +13,6 @@ export const ContentModel = types.model('ContentModel', {
             const { content$, setUpdateContent } = getParentOfType(self, RootStore$)
             const newContent = content$.filter((item) => item.id !== id)
             setUpdateContent(newContent)
+            console.log('>>content$', content$)
         }
     }))

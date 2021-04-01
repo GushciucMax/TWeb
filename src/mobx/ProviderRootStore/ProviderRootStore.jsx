@@ -1,5 +1,5 @@
 import React from "react";
-import { RootStore$ } from "../stores/RootStore";
+import { RootStore$ } from "../stores/RootStore$";
 
 const MainStore = RootStore$.create({})
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Layout } from 'antd';
 import { } from '../../styles/styles.css'
 import { observer } from "mobx-react-lite"
@@ -11,17 +11,28 @@ const { Content } = Layout
 
 export const ContentLayout = observer(() => {
 
-	const { content$ } = useRootStore()
+	const { setInitialState, content$, contentSum } = useRootStore()
+
+	useEffect(() => {
+		setInitialState()
+	}, [])
 
 	return (
 		<Content className="contentLayout">
+			{contentSum}
 
 			{	!content$.length ? (
 				<NoContent />
 			) : (
-				content$.map(({img, title, description}, index) => {
+				content$.map(({img, title, description, id, removeCard}) => {
 					return(
-						<ContentCard key={index} title={title} description={description} img={img} index={index} />
+						<ContentCard 
+							key={id} 
+							title={title} 
+							description={description} 
+							img={img} 
+							id={id} 
+							removeCard = {removeCard}/>
 					)
 				})
 			)}

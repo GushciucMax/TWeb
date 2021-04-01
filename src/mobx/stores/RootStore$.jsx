@@ -10,6 +10,12 @@ export const RootStore$ = types.model('RootStore$', {
 			self.content$ = content
 		},
 		setInitialState(){
-			self.content = contentMock
+			self.content$ = contentMock
+		}
+	}))
+
+	.views((self) => ({
+		get contentSum(){
+			return self.content$.length
 		}
 	}))

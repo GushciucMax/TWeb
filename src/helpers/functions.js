@@ -19,6 +19,5 @@ export function getStateByKey(key) {
 export function removeCard(initialState, index){
 	const state = initialState
 	const removedElement = state.splice(index, 1)
-
 	return [removedElement, state]
 }

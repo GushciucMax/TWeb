@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import './App.css';
 import { Layout } from 'antd';
@@ -15,26 +15,23 @@ import { ShopPage } from './NavBar/ShopPage'
 import { AboutPage } from './NavBar/AboutPage'
 
 import FormDocs from './Components/FormDocs/FormDocs'
-import { useRootStore } from './mobx/ProviderRootStore/ProviderRootStore'
+import { StoreProvider } from './mobx/ProviderRootStore/ProviderRootStore'
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route}	from "react-router-dom";
+import { contentMock } from './Mock/content';
 
 const { Content } = Layout
 
+
+
 function App() {
 
-	const { setInitialState } = useRootStore()
+	const [initialState, setInitialState] = useState(contentMock)
 
-    useEffect(() => {
-        setInitialState()
-    }, [])
 
-  return (
-		  <Router>
+	return (
+		<StoreProvider>
+			<Router>
 
 	        <Layout>
 				<HeaderLayout />
@@ -73,6 +70,7 @@ function App() {
 	        </Layout>
 
 			</Router>
+		</StoreProvider>
   )
 }
 
