@@ -1,4 +1,3 @@
-import React from 'react'
 import { Layout } from 'antd';
 import { } from '../../styles/styles.css'
 import { observer } from "mobx-react-lite"

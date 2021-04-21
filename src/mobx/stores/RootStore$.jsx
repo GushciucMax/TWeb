@@ -4,8 +4,11 @@ import { contentMock } from '../../Mock/content'
 import { AddContent } from '../models/AddContentModel.model'
 import { v4 as uuid } from 'uuid'
 import axios from 'axios'
-import { notifyListeners } from 'mobx/dist/internal'
 import { notification } from 'antd'
+import { flow } from 'mobx'
+import { applySnapshot } from 'mobx-state-tree'
+import { makeSnapshotIn } from '../helpers/functions'
+
 
 export const RootStore$ = types.model('RootStore$', {
 	content$: types.array(ContentModel),
@@ -18,8 +21,8 @@ export const RootStore$ = types.model('RootStore$', {
 		},
 
 		setInitialState(){
-			self.content$ = contentMock
 			self.fetchImagesfromAPI()
+			self.content$ = contentMock
 		},
 
 		addContent(data){
@@ -42,10 +45,14 @@ export const RootStore$ = types.model('RootStore$', {
 				const res = yield axios.get('https://pixabay.com/api/', {
 					params: {
 						key: '21267302-af61bb3a1194b18a3a862ed11',
-						q: 'nature'
+						q: 'nature',
+						per_page: 8
 					}
 				})
-				const beautifyData = makeSnapshotIn(res.data)
+
+				console.log('>>res', res)
+
+				const beautifyData = makeSnapshotIn(res.data.hits)
 
                 applySnapshot(self.content$, beautifyData)
 				

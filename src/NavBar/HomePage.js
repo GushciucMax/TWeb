@@ -3,8 +3,8 @@ import { } from '../styles/styles.css'
 
 export const HomePage = () => {
 	return (
-		<div className = "navbar">
-			<h1> Welcome Home </h1>
+		<div id = "title-page" className = "navbar">
+			<h1> Main page </h1>
 		</div>
 	)
 }

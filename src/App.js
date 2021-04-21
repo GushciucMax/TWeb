@@ -39,34 +39,31 @@ function App() {
 					<HeaderLayout />
 
 					<Content style={{ padding: '0 50px', margin: '30px 0'}}>
-					<Switch>
-						<Route exact path={HOME_PATH}>
 							<HomePage />
-						</Route>
 						<Route exact path={SHOP_PATH}>
 							<ShopPage />
 						</Route>
 						<Route exact path={ABOUT_PATH}>
 							<AboutPage />
 						</Route>
-					</Switch>
+						
 
-					<Layout className="site-layout-background" style={{ padding: '24px 0'}}>
-			        	<MenuLayout />
-						<Switch>
-				          	<Route exact path={MAIN_PATH}>
-						  	 	<ContentLayout />
-				          	</Route>
-				          	<Route exact path={CALENDAR_PATH}>
-				            	<Calendard />
-				          	</Route>
-				          	<Route exact path={DOCS_PATH}>
-				             	<FormDocs />
-				          	</Route>
-						</Switch>
+						<Layout className="site-layout-background" style={{ padding: '24px 0'}}>
+							<MenuLayout />
+							<Switch>
+								<Route exact path={MAIN_PATH}>
+									<ContentLayout />
+								</Route>
+								<Route exact path={CALENDAR_PATH}>
+									<Calendard />
+								</Route>
+								<Route exact path={DOCS_PATH}>
+									<FormDocs />
+								</Route>
+							</Switch>
 
-					</Layout>
-			    </Content>
+						</Layout>
+			    	</Content>
 
 				<FooterLayout />
 	        	</Layout>

@@ -1,4 +1,5 @@
 import { Instance, SnapshotIn } from "mobx-state-tree";
+import { Identifier } from "typescript";
 import { ContentModel } from "./models/ContentModel.model";
 import { RootStore$ } from "./stores/RootStore$";
 
@@ -15,9 +16,9 @@ export interface ISnapshotContentModelIn extends SnapshotIn<typeof ContentModel>
 }
 
 export interface IRequestData {
-    breeds: [],
-    height: number,
+
     id: string,
-    url: string,
-    width: number
+    webformatURL: string,
+    tags: string,
+    user: string
 }

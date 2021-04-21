@@ -1,7 +1,7 @@
 .contentLayout {
 	padding: 0 24px;
-	display:inline-flex;
-	overflow-x: inherit;
+	display:grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .noContent {
@@ -9,5 +9,12 @@
 }
 
 .navbar {
-	margin:auto;
+	margin: auto;
+}
+
+.card {
+	max-width: 100%;
+	width: 240px;
+	margin: 10px;
+	overflow: hidden;	
 }

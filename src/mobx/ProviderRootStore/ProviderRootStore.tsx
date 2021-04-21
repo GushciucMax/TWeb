@@ -6,7 +6,7 @@ const MainStore = RootStore$.create({})
 
 const StoreContext = React.createContext<IRoot$ | null>(null)
 
-export const StoreProvider = (props) => {
+export const StoreProvider = (props:any) => {
     return <StoreContext.Provider value={ MainStore }> { props.children } </StoreContext.Provider>
 }
 

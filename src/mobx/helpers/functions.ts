@@ -1,14 +1,15 @@
+import { identifier } from "mobx-state-tree/dist/internal"
 import { IRequestData, ISnapshotContentModelIn } from "../interfaces"
 
 
-export function makeSnapshotIn(res: IRequestData[]): ISnapshotContentModelIn[] {
+export function makeSnapshotIn(data: IRequestData[]): ISnapshotContentModelIn[] {
 
-    return res.map((data) => {
+    return data.map((hits: IRequestData ) => {
         return {
-            id: data.id,
-            title: '',
-            description: '',
-            img: data.url
+            id: hits.id.toString(),
+            title: hits.tags,
+            description: hits.user,
+            img: hits.webformatURL
         }
     })
 
