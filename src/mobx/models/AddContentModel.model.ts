@@ -7,3 +7,9 @@ export const AddContent = types.model('AddContent', {
     description: '',
     img: ''
 })
+
+.actions((self) => ({
+    updateField<key extends keyof typeof self>(key: key, value: typeof self[key]) {
+        self[key] = value
+    }
+}))

@@ -1,5 +1,10 @@
 import React from "react";
+<<<<<<< Updated upstream:src/mobx/ProviderRootStore/ProviderRootStore.jsx
 import { RootStore$ } from "../stores/RootStore$";
+=======
+import { RootStore$ } from "../stores/RootStore$.store";
+import { IRoot$ } from "../interfaces";
+>>>>>>> Stashed changes:src/mobx/ProviderRootStore/ProviderRootStore.tsx
 
 const MainStore = RootStore$.create({})
 
