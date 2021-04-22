@@ -1,4 +1,3 @@
-import { types } from 'mobx-state-tree'
 import { ContentModel } from '../models/ContentModel.model'
 import { contentMock } from '../../Mock/content'
 import { AddContent } from '../models/AddContentModel.model'
@@ -6,15 +5,13 @@ import { v4 as uuid } from 'uuid'
 import axios from 'axios'
 import { notification } from 'antd'
 import { flow } from 'mobx'
-import { applySnapshot } from 'mobx-state-tree'
+import { applySnapshot, types } from 'mobx-state-tree'
 import { makeSnapshotIn } from '../helpers/functions'
-import { IContentModel$, ISnapshotContentModelIn } from '../interfaces'
-
+import { IContentModel, ISnapshotContentModelIn } from '../interfaces'
 
 export const RootStore$ = types.model('RootStore$', {
 	content$: types.array(ContentModel),
-
-	addContent$: types.array(AddContent)
+	addContent$: types.maybe(AddContent)
 })
 
 .actions((self) => ({
@@ -52,15 +49,29 @@ export const RootStore$ = types.model('RootStore$', {
 			applySnapshot(self.content$, contentMock)
 		},
 
-		addContent(data: IContentModel$){
-			self.content$.push({
-				...data,
-				id: uuid()
-			})
+		setAddContentInitial() {
+            const emptyData = {
+                title: '',
+                description: '',
+                img: ''
+            }
 
-		},
+            // @ts-ignore
+            self.addContent$ = emptyData
 
-		
+        },
+
+		addContent(data: IContentModel){
+			const newData = {
+                ...data,
+                id: uuid()
+            }
+
+			self.content$.push(newData)
+
+			// @ts-ignore
+            self.addContent$ = {}
+		}	
 	}))
 
 	.views((self) => ({

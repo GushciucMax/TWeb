@@ -6,7 +6,7 @@ import { RootStore$ } from "./stores/RootStore$.store";
 export interface IRoot$ extends Instance<typeof RootStore$> {
 } 
 
-export interface IContentModel$ extends Instance<typeof ContentModel> {
+export interface IContentModel extends Instance<typeof ContentModel> {
 } 
 
 export interface ISnapshotContentModelIn extends SnapshotIn<typeof ContentModel> {

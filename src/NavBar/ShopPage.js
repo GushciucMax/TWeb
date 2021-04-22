@@ -5,7 +5,7 @@ export const ShopPage = () => {
 
 	return (
 		<div className = "navbar">
-			<h1> Welcome to our Shop </h1>
+			{/* <h1> Welcome to our Shop </h1> */}
 		</div>
 	)
 }
