@@ -1,14 +1,19 @@
-import React from 'react'
-import { observer } from 'mobx-react-lite'
-
+import React, { useEffect } from 'react'
 import { Input, Button, Space, Form } from 'antd';
 import { useRootStore } from '../../mobx/ProviderRootStore/ProviderRootStore';
+import { observer } from 'mobx-react-lite'
 
 export const FormDocs = observer(() => {
 
-    const { addContent, updateField, addContent$ } = useRootStore()
+    const { addContent, addContent$, setAddContentInitial } = useRootStore()
 
-    const { title, description, img } = addContent$
+    useEffect(() => {
+        setAddContentInitial()
+    }, [])
+
+    if (!addContent$) return ''
+
+    const { title, description, img, updateField } = addContent$
 
     return (
         <div style ={{
@@ -27,7 +32,6 @@ export const FormDocs = observer(() => {
                 </Button>
             </Space>
             </Form>
-
         </div>
     )
 })
